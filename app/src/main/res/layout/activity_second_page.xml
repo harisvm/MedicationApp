@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2E2E2B"
+    android:orientation="vertical"
+    tools:context=".SecondPage">
+
+
+    <EditText
+        android:id="@+id/editTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="MEDICINE"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:textStyle="bold">
+
+
+    </EditText>
+
+    <ca.antonious.materialdaypicker.MaterialDayPicker
+        android:id="@+id/day_picker"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <TimePicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="40dp"
+        android:textAlignment="center">
+
+    </TimePicker>
+
+    <EditText
+        android:id="@+id/des"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Description"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:textColorHint="@color/white"
+
+        ></EditText>
+
+    <Button
+        android:id="@+id/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/add_button"
+        android:text="save"
+        android:textColor="@color/white"
+
+        ></Button>
+</LinearLayout>
