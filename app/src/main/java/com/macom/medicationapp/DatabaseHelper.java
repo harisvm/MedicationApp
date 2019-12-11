@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final String TABLE_NAME = "MEDICATION REMINDER";
+    public static final String TABLE_NAME = "MEDICATION_REMINDER";
     public static final String ID = "id";
     public static final String TITLE = "title";
     public static final String DESCRIPTION = "description";
@@ -51,7 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    List<MedicinReminderModel> getAllContacts() {
+    List<MedicinReminderModel> getAllReminders() {
 
         String SELECT_QUERY = "SELECT *FROM " + TABLE_NAME;
         SQLiteDatabase database = this.getWritableDatabase();
@@ -61,9 +61,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
 
             MedicinReminderModel medicinReminderModel = new MedicinReminderModel();
-            medicinReminderModel.setTitle(cursor.getString(0));
-            medicinReminderModel.setDescription(cursor.getString(1));
-            medicinReminderModel.setTime(cursor.getString(2));
+            medicinReminderModel.setTitle(cursor.getString(1));
+            medicinReminderModel.setDescription(cursor.getString(2));
+            medicinReminderModel.setTime(cursor.getString(3));
             reminderModelList.add(medicinReminderModel);
 
         }
