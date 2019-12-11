@@ -18,22 +18,9 @@ public class MainActivity extends AppCompatActivity {
     DatabaseHelper dbHelper;
     Button button;
 
-    @Override
-    protected void onPostResume() {
-        dbHelper = new DatabaseHelper(this);
 
-        modelArrayList = new ArrayList<>();
-        modelArrayList = dbHelper.getAllReminders();
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
-        medicineAdapter = new MedicineAdapter(modelArrayList, MainActivity.this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        recyclerView.setAdapter(medicineAdapter);
-
-        super.onPostResume();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +36,26 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 
         });
+
+getDatabaseValues();
+    }
+
+
+    public void getDatabaseValues(){
+
+
+        dbHelper = new DatabaseHelper(this);
+
+        modelArrayList = new ArrayList<>();
+        modelArrayList = dbHelper.getAllReminders();
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+
+        medicineAdapter = new MedicineAdapter(modelArrayList, MainActivity.this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(medicineAdapter);
+        medicineAdapter.notifyDataSetChanged();
+
 
 
     }

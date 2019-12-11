@@ -1,7 +1,7 @@
 package com.macom.medicationapp;
 
 public class MedicinReminderModel {
-    String title,description,time;
+    String title, description, time;
 
     public MedicinReminderModel() {
     }

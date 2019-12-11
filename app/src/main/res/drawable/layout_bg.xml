@@ -72,7 +72,7 @@
 
         <shape>
 
-            <solid android:color="@color/colorAccent" />
+            <solid android:color="@color/darkred" />
 
             <corners android:radius="10dp" />
 

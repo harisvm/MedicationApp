@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,10 +39,19 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
 
         MedicinReminderModel medicine = medicineList.get(position);
 
+        holder.button.setOnClickListener(v -> {
+            DatabaseHelper databaseHelper = new DatabaseHelper(context);
+            databaseHelper.deleteContact(medicine);
+            medicineList.remove(position);
+            notifyDataSetChanged();
+
+
+        });
+
         holder.title.setText(medicine.getTitle());
         holder.description.setText(medicine.getDescription());
         holder.imageView.setBackgroundResource(R.drawable.medicine);
-
+holder.time.setText(medicine.getTime());
     }
 
     @Override
@@ -51,16 +61,20 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
 
 
     public class MedicineViewholder extends RecyclerView.ViewHolder {
-        TextView title, description;
+        TextView title, description,time;
         ImageView imageView;
         CardView cardView;
+        Button button;
 
         public MedicineViewholder(@NonNull View itemView) {
             super(itemView);
             cardView = itemView.findViewById(R.id.card);
             title = itemView.findViewById(R.id.title1);
             description = itemView.findViewById(R.id.description);
+            time = itemView.findViewById(R.id.time1);
             imageView = itemView.findViewById(R.id.imgView);
+            button = itemView.findViewById(R.id.delete);
+
         }
     }
 }
