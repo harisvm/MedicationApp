@@ -40,10 +40,11 @@ app:cardBackgroundColor="@color/black"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title1"
                 android:layout_marginLeft="10dp"
-                android:textColor="@color/green"
-                android:textSize="18dp"
 
-                android:layout_marginTop="10dp"
+                android:textColor="@color/green"
+                android:textSize="12dp"
+
+                android:layout_marginTop="35dp"
 
                 android:layout_toRightOf="@+id/imgView"
                 android:text="Time-Date"></TextView>
@@ -59,7 +60,7 @@ app:cardBackgroundColor="@color/black"
                 android:layout_toRightOf="@+id/imgView"
                 android:text="Time-Date"
 
-                android:textColor="@color/green"
+                android:textColor="@color/white"
                 android:textSize="18dp"></TextView>
             <Button
 android:layout_alignParentRight="true"

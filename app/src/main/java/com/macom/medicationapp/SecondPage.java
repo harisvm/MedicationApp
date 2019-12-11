@@ -3,11 +3,11 @@ package com.macom.medicationapp;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.format.Time;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,6 +41,7 @@ timePicker = findViewById(R.id.timePicker);
 
 
         button.setOnClickListener(v -> {
+            if(materialDayPicker.getSelectedDays()!=null){
 int timeHour = timePicker.getHour();
             int timeMinute = timePicker.getMinute();
             String time;
@@ -49,18 +50,33 @@ if(timeMinute<10){
 
 }
    else{
-    time = timeHour+""+timeMinute;
+    time = timeHour+" : "+timeMinute;
 
 }
 
             String title = editTitle.getText().toString();
-            String des = editDescrption.getText().toString();
-            databaseHelper.addReminder(new MedicinReminderModel(title, des,time));
+           int  days = materialDayPicker.getSelectedDays().size();
+            StringBuffer stringBuffer = new StringBuffer();
+
+           for(int i =0;i<days-1;i++){
+
+               stringBuffer.append(materialDayPicker.getSelectedDays().get(i)+", ");
+           }
+            stringBuffer.append(materialDayPicker.getSelectedDays().get(days-1));
+
+            databaseHelper.addReminder(new MedicinReminderModel(title, stringBuffer.toString(),time));
             Intent i = new Intent(SecondPage.this, MainActivity.class);
             startActivity(i);
 
-        });
 
+        }
+        else {
+
+
+            }
+        }
+
+        );
+        }
 
     }
-}
