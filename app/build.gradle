@@ -21,6 +21,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+
+        debug {
+            resValue("string", "PORT_NUMBER", "8081")
+        }
     }
 }
 
@@ -38,6 +42,5 @@ dependencies {
 
     implementation 'ca.antonious:materialdaypicker:0.6.0'
 
-    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 
 }

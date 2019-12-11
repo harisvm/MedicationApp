@@ -17,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DESCRIPTION = "description";
     public static final String TIME = "time";
     static final int DB_VERSION = 1;
-    static final String DB_NAME = "REMIDER LIST";
+    static final String DB_NAME = "REMIDER_LIST";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -60,12 +60,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
 
+
             MedicinReminderModel medicinReminderModel = new MedicinReminderModel();
             medicinReminderModel.setTitle(cursor.getString(1));
             medicinReminderModel.setDescription(cursor.getString(2));
             medicinReminderModel.setTime(cursor.getString(3));
             reminderModelList.add(medicinReminderModel);
-
         }
 
 

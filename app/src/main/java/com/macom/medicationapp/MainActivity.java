@@ -15,18 +15,19 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     MedicineAdapter medicineAdapter;
     List<MedicinReminderModel> modelArrayList;
-DatabaseHelper dbHelper;
-Button button;
+    DatabaseHelper dbHelper;
+    Button button;
 
     @Override
     protected void onPostResume() {
         dbHelper = new DatabaseHelper(this);
 
+        modelArrayList = new ArrayList<>();
         modelArrayList = dbHelper.getAllReminders();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
-        medicineAdapter = new MedicineAdapter(modelArrayList,MainActivity.this);
+        medicineAdapter = new MedicineAdapter(modelArrayList, MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
 
         recyclerView.setAdapter(medicineAdapter);
@@ -40,19 +41,14 @@ Button button;
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recycler);
         modelArrayList = new ArrayList<>();
-button = findViewById(R.id.addRem);
+        button = findViewById(R.id.addRem);
 
-button.setOnClickListener(v->{
+        button.setOnClickListener(v -> {
 
-    Intent intent = new Intent(MainActivity.this,SecondPage.class);
-    startActivity(intent);
+            Intent intent = new Intent(MainActivity.this, SecondPage.class);
+            startActivity(intent);
 
-});
-
-
-
-
-
+        });
 
 
     }
