@@ -38,5 +38,6 @@ dependencies {
 
     implementation 'ca.antonious:materialdaypicker:0.6.0'
 
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 
 }
