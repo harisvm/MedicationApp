@@ -14,8 +14,8 @@ import ca.antonious.materialdaypicker.MaterialDayPicker;
 
 
 public class SecondPage extends AppCompatActivity {
-    TextView dateView, editTitle;
-    EditText editDescrption;
+    TextView dateView;
+    EditText editDescrption,editTitle;
     MaterialDayPicker materialDayPicker;
     Button button;
     @SuppressLint("ResourceAsColor")
@@ -28,21 +28,19 @@ public class SecondPage extends AppCompatActivity {
 
 
         button = findViewById(R.id.save);
-        String title = getIntent().getExtras().getString("title");
-        String des = getIntent().getExtras().getString("des");
 
-        dateView = findViewById(R.id.editTitle);
-        editTitle = (EditText) findViewById(R.id.editTitle);
+
+        editTitle = findViewById(R.id.editTitle);
         editDescrption = findViewById(R.id.des);
-        editTitle.setText("" + title);
-        editDescrption.setText("" + des);
 
 
 
-        Toast.makeText(this, title + des, Toast.LENGTH_LONG).show();
         materialDayPicker = findViewById(R.id.day_picker);
 
         button.setOnClickListener(v->{
+
+            String  title = editTitle.getText().toString();
+            String des = editDescrption.getText().toString();
             databaseHelper.addReminder(new MedicinReminderModel(title,des,""));
             Intent i = new Intent(SecondPage.this,MainActivity.class);
             startActivity(i);

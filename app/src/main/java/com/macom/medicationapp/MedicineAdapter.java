@@ -16,10 +16,10 @@ import java.util.List;
 
 public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.MedicineViewholder> {
 
-    List<ItemListModel> medicineList;
+    List<MedicinReminderModel> medicineList;
     Context context;
 
-    public MedicineAdapter(List<ItemListModel> medicineList, Context context) {
+    public MedicineAdapter(List<MedicinReminderModel> medicineList, Context context) {
         this.medicineList = medicineList;
         this.context = context;
     }
@@ -37,22 +37,10 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
     public void onBindViewHolder(@NonNull MedicineViewholder holder, int position) {
 
 
-        ItemListModel movie = medicineList.get(position);
-        holder.cardView.setOnClickListener(v -> {
+        MedicinReminderModel medicine = medicineList.get(position);
 
-            String title = movie.getTitle();
-            String des = movie.getDescription();
-            Intent intent = new Intent(context, SecondPage.class);
-            Bundle mBundle = new Bundle();
-
-            mBundle.putString("title", title);
-            mBundle.putString("des", des);
-
-            intent.putExtras(mBundle);
-            v.getContext().startActivity(intent);
-        });
-        holder.title.setText(movie.getTitle());
-        holder.description.setText(movie.getDescription());
+        holder.title.setText(medicine.getTitle());
+        holder.description.setText(medicine.getDescription());
         holder.imageView.setBackgroundResource(R.drawable.medicine);
 
     }
