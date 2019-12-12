@@ -1,1 +1,0 @@
-package com.macom.medicationapp;public class NotificationPublisher {}

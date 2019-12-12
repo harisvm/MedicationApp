@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Calendar;
 
 import ca.antonious.materialdaypicker.MaterialDayPicker;
 
@@ -20,7 +21,8 @@ public class SecondPage extends AppCompatActivity {
     EditText editDescrption, editTitle;
     MaterialDayPicker materialDayPicker;
     Button button;
-TimePicker timePicker;
+    TimePicker timePicker;
+
     @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,48 +37,52 @@ TimePicker timePicker;
 
         editTitle = findViewById(R.id.editTitle);
         editDescrption = findViewById(R.id.des);
-materialDayPicker = findViewById(R.id.day_picker);
-timePicker = findViewById(R.id.timePicker);
-
+        materialDayPicker = findViewById(R.id.day_picker);
+        timePicker = findViewById(R.id.timePicker);
 
 
         button.setOnClickListener(v -> {
-            if(materialDayPicker.getSelectedDays()!=null){
-int timeHour = timePicker.getHour();
-            int timeMinute = timePicker.getMinute();
-            String time;
-if(timeMinute<10){
-    time = timeHour+ " : 0"+timeMinute;
+                    if (!materialDayPicker.getSelectedDays().isEmpty()) {
+                        int timeHour = timePicker.getHour();
+                        int timeMinute = timePicker.getMinute();
+                        String time;
+                        if (timeMinute < 10) {
+                            time = timeHour + " : 0" + timeMinute;
 
-}
-   else{
-    time = timeHour+" : "+timeMinute;
+                        } else {
+                            time = timeHour + " : " + timeMinute;
 
-}
+                        }
 
-            String title = editTitle.getText().toString();
-           int  days = materialDayPicker.getSelectedDays().size();
-            StringBuffer stringBuffer = new StringBuffer();
+                        String title = editTitle.getText().toString();
+                        int days = materialDayPicker.getSelectedDays().size();
+                        StringBuffer stringBuffer = new StringBuffer();
 
-           for(int i =0;i<days-1;i++){
+                        for (int i = 0; i < days - 1; i++) {
 
-               stringBuffer.append(materialDayPicker.getSelectedDays().get(i)+", ");
-           }
-            stringBuffer.append(materialDayPicker.getSelectedDays().get(days-1));
+                            stringBuffer.append(materialDayPicker.getSelectedDays().get(i) + ", ");
+                        }
+                        stringBuffer.append(materialDayPicker.getSelectedDays().get(days - 1));
 
-            databaseHelper.addReminder(new MedicinReminderModel(title, stringBuffer.toString(),time));
-            Intent i = new Intent(SecondPage.this, MainActivity.class);
-            startActivity(i);
-
-
-        }
-        else {
+                        databaseHelper.addReminder(new MedicinReminderModel(title, stringBuffer.toString(), time));
+                        Intent i = new Intent(SecondPage.this, MainActivity.class);
+                        startActivity(i);
 
 
-            }
-        }
+                    } else {
+
+                        Toast.makeText(getApplicationContext(), "Please select date and time", Toast.LENGTH_LONG).show();
+                    }
+                }
+
 
         );
-        }
+    }
+
+
+    public  void triggerAlarm(int triggerTime){
+        Calendar calendar = Calendar.getInstance();
+
 
     }
+}
