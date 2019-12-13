@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -27,7 +28,8 @@ public class AlarmNotificationService extends IntentService {
 
 
     private void sendNotification() {
-
+        PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 1,
+                new Intent(getApplicationContext(),MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -52,6 +54,7 @@ public class AlarmNotificationService extends IntentService {
                 .setOngoing(true)
                 .setSmallIcon(R.drawable.medicine)
                 .setChannelId(channelId)
+                .setFullScreenIntent(contentIntent,true)
                 .build();
 
         notificationManager.notify(notifyId, notification);

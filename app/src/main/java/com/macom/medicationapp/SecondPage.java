@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 import ca.antonious.materialdaypicker.MaterialDayPicker;
 
@@ -27,6 +29,7 @@ public class SecondPage extends AppCompatActivity {
     Button button;
     TimePicker timePicker;
     PendingIntent pendingIntent;
+    DatePicker datePicker;
     AlarmNotificationService alarmNotificationService;
 
     @SuppressLint("ResourceAsColor")
@@ -39,7 +42,7 @@ public class SecondPage extends AppCompatActivity {
 
         alarmNotificationService = new AlarmNotificationService();
         button = findViewById(R.id.save);
-
+datePicker = new DatePicker(this);
 
         editTitle = findViewById(R.id.editTitle);
         editDescrption = findViewById(R.id.des);
@@ -109,11 +112,7 @@ public class SecondPage extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
 
-       int today = calendar.DAY_OF_WEEK;
-        if(materialDayPicker.getSelectedDays().get(0).equals("SUNDAY")){
 
-
-        }
 
 
         calendar.set(Calendar.HOUR_OF_DAY, timePicker.getCurrentHour());
@@ -123,21 +122,5 @@ public class SecondPage extends AppCompatActivity {
     }
 
 
-    public void stopAlarmManager() {
-
-        AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
-
-        manager.cancel(pendingIntent);
-
-
-        stopService(new Intent(SecondPage.this, AlarmSoundService.class));
-
-        NotificationManager notificationManager = (NotificationManager) this
-                .getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.cancel(AlarmNotificationService.NOTIFICATION_ID);
-
-        Toast.makeText(this, "Alarm Canceled/Stop by User.", Toast.LENGTH_SHORT).show();
-    }
 
 }

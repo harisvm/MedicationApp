@@ -3,13 +3,19 @@ package com.macom.medicationapp;
 
 
 
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,14 +46,12 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
 
 
         MedicinReminderModel medicine = medicineList.get(position);
-
         holder.button.setOnClickListener(v -> {
             DatabaseHelper databaseHelper = new DatabaseHelper(context);
             databaseHelper.deleteContact(medicine);
             medicineList.remove(position);
             notifyDataSetChanged();
-
-
+deleteAlarmManager();
         });
 
         holder.title.setText(medicine.getTitle());
@@ -59,6 +63,21 @@ holder.time.setText(medicine.getTime());
     @Override
     public int getItemCount() {
         return medicineList.size();
+    }
+    public void deleteAlarmManager() {
+
+
+        NotificationManager notificationManager = (NotificationManager) context
+                .getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(AlarmNotificationService.NOTIFICATION_ID);
+
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent myIntent = new Intent(context, AlarmSoundService.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                context, 1, myIntent, 0);
+
+        alarmManager.cancel(pendingIntent);
+
     }
 
 

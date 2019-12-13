@@ -1,8 +1,12 @@
 package com.macom.medicationapp;
 
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     MedicineAdapter medicineAdapter;
     List<MedicinReminderModel> modelArrayList;
     DatabaseHelper dbHelper;
-    Button button;
+    Button buttonCreate;
 
 
     @Override
@@ -25,14 +29,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recycler);
         modelArrayList = new ArrayList<>();
-        button = findViewById(R.id.addRem);
-
-        button.setOnClickListener(v -> {
+        buttonCreate = findViewById(R.id.addRem);
+        buttonCreate.setOnClickListener(v -> {
 
             Intent intent = new Intent(MainActivity.this, SecondPage.class);
             startActivity(intent);
 
         });
+
+
 
         getDatabaseValues();
     }
@@ -55,4 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+
 }
