@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -21,7 +22,10 @@ public class AlarmSoundService extends Service {
     public void onCreate() {
         super.onCreate();
         mediaPlayer = MediaPlayer.create(this,R.raw.test);
-mediaPlayer.start();
+            mediaPlayer.start();
+
+
+        Toast.makeText(this,"playing",Toast.LENGTH_LONG).show();
 mediaPlayer.setLooping(true);
     }
 
