@@ -19,9 +19,6 @@ public class MainActivity extends AppCompatActivity {
     Button button;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +34,11 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-getDatabaseValues();
+        getDatabaseValues();
     }
 
 
-    public void getDatabaseValues(){
+    public void getDatabaseValues() {
 
 
         dbHelper = new DatabaseHelper(this);
@@ -55,7 +52,6 @@ getDatabaseValues();
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(medicineAdapter);
         medicineAdapter.notifyDataSetChanged();
-
 
 
     }
