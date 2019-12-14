@@ -6,12 +6,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/alarm"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AnimationAlarm"></activity>
+        <activity android:name=".Animations.AnimationAlarm"></activity>
         <activity android:name=".SecondPage" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -21,10 +21,10 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".AlarmReciever" />
+        <receiver android:name=".ServicesAndRecievers.AlarmReciever" />
 
-        <service android:name=".AlarmNotificationService" />
-        <service android:name=".AlarmSoundService" />
+        <service android:name=".ServicesAndRecievers.AlarmNotificationService" />
+        <service android:name=".ServicesAndRecievers.AlarmSoundService" />
     </application>
 
 </manifest>

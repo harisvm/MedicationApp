@@ -1,4 +1,4 @@
-package com.macom.medicationapp;
+package com.macom.medicationapp.ServicesAndRecievers;
 
 import android.app.Service;
 import android.content.Intent;
@@ -7,6 +7,8 @@ import android.os.IBinder;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+
+import com.macom.medicationapp.R;
 
 public class AlarmSoundService extends Service {
 

@@ -1,4 +1,4 @@
-package com.macom.medicationapp;
+package com.macom.medicationapp.Adapter;
 
 
 
@@ -17,6 +17,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.macom.medicationapp.DatabaseHelper;
+import com.macom.medicationapp.Models.MedicinReminderModel;
+import com.macom.medicationapp.R;
+import com.macom.medicationapp.ServicesAndRecievers.AlarmNotificationService;
+import com.macom.medicationapp.ServicesAndRecievers.AlarmSoundService;
 
 import java.util.List;
 

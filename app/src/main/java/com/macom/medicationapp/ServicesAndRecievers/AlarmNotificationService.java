@@ -1,4 +1,4 @@
-package com.macom.medicationapp;
+package com.macom.medicationapp.ServicesAndRecievers;
 
 import android.app.IntentService;
 import android.app.Notification;
@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.graphics.Color;
 
 import androidx.annotation.Nullable;
+
+import com.macom.medicationapp.Animations.AnimationAlarm;
+import com.macom.medicationapp.R;
 
 public class AlarmNotificationService extends IntentService {
 	public static final int NOTIFICATION_ID = 0;

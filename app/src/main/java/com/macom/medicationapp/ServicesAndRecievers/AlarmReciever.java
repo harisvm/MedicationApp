@@ -1,10 +1,13 @@
-package com.macom.medicationapp;
+package com.macom.medicationapp.ServicesAndRecievers;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Toast;
+
+import com.macom.medicationapp.ServicesAndRecievers.AlarmNotificationService;
+import com.macom.medicationapp.ServicesAndRecievers.AlarmSoundService;
 
 import static androidx.legacy.content.WakefulBroadcastReceiver.startWakefulService;
 

@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.macom.medicationapp.Models.MedicinReminderModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
