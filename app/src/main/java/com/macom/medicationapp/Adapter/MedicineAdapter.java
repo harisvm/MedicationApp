@@ -1,4 +1,5 @@
-package com.macom.medicationapp;
+package com.macom.medicationapp.Adapter;
+
 
 
 import android.app.AlarmManager;
@@ -9,6 +10,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +19,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.macom.medicationapp.DatabaseHelper;
+import com.macom.medicationapp.Models.MedicinReminderModel;
+import com.macom.medicationapp.R;
+import com.macom.medicationapp.ServicesAndRecievers.AlarmNotificationService;
+import com.macom.medicationapp.ServicesAndRecievers.AlarmSoundService;
 
 import java.util.List;
 
@@ -54,6 +63,15 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
 		holder.title.setText(medicine.getTitle());
 		holder.description.setText(medicine.getDescription());
 		holder.imageView.setBackgroundResource(R.drawable.medicine);
+
+		Animation animation1 =
+				AnimationUtils.loadAnimation(context,
+						R.anim.anim_blink);
+		holder.imageView.startAnimation(animation1);
+
+
+
+
 		holder.time.setText(medicine.getTime());
 	}
 
@@ -74,9 +92,11 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
 		PendingIntent pendingIntent = PendingIntent.getBroadcast(
 				context, 133, myIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+
 		alarmManager.cancel(pendingIntent);
 
 	}
+
 
 
 	public class MedicineViewholder extends RecyclerView.ViewHolder {
@@ -84,6 +104,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
 		ImageView imageView;
 		CardView cardView;
 		Button button;
+
 
 		public MedicineViewholder(@NonNull View itemView) {
 			super(itemView);
@@ -96,4 +117,8 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
 
 		}
 	}
+
+
+
+
 }

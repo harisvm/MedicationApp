@@ -8,53 +8,58 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.macom.medicationapp.Adapter.MedicineAdapter;
+import com.macom.medicationapp.Models.MedicinReminderModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
-	RecyclerView recyclerView;
-	MedicineAdapter medicineAdapter;
-	List<MedicinReminderModel> modelArrayList;
-	DatabaseHelper dbHelper;
-	Button buttonCreate;
+    MedicineAdapter medicineAdapter;
+    List<MedicinReminderModel> modelArrayList;
+    DatabaseHelper dbHelper;
+    @BindView(R.id.addRem)
+    Button button;
+    @BindView(R.id.recycler)
+    RecyclerView recyclerView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+        modelArrayList = new ArrayList<>();
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SecondPage.class);
+            startActivity(intent);
+        });
 
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		recyclerView = findViewById(R.id.recycler);
-		modelArrayList = new ArrayList<>();
-		buttonCreate = findViewById(R.id.addRem);
-		buttonCreate.setOnClickListener(v -> {
-
-			Intent intent = new Intent(MainActivity.this, SecondPage.class);
-			startActivity(intent);
-
-		});
+        getDatabaseValues();
+    }
 
 
-		getDatabaseValues();
-	}
+    public void getDatabaseValues() {
 
 
-	public void getDatabaseValues() {
+        dbHelper = new DatabaseHelper(this);
+
+        modelArrayList = new ArrayList<>();
+        modelArrayList = dbHelper.getAllReminders();
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+
+        medicineAdapter = new MedicineAdapter(modelArrayList, MainActivity.this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(medicineAdapter);
+        medicineAdapter.notifyDataSetChanged();
 
 
-		dbHelper = new DatabaseHelper(this);
-
-		modelArrayList = new ArrayList<>();
-		modelArrayList = dbHelper.getAllReminders();
-
-		RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-
-		medicineAdapter = new MedicineAdapter(modelArrayList, MainActivity.this);
-		recyclerView.setLayoutManager(layoutManager);
-		recyclerView.setAdapter(medicineAdapter);
-		medicineAdapter.notifyDataSetChanged();
-
-
-	}
+    }
 
 
 }
