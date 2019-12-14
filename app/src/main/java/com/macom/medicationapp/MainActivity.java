@@ -3,6 +3,7 @@ package com.macom.medicationapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     List<MedicinReminderModel> modelArrayList;
     DatabaseHelper dbHelper;
     BottomNavigationView bottomNavigationView;
-
+Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +31,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recycler);
         modelArrayList = new ArrayList<>();
-
+button = findViewById(R.id.a)
         bottomNavigationView = findViewById(R.id.bottomNavigation);
         bottomNavigationView.inflateMenu(R.menu.menu);
-
+b
         bottomNavigationView.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SecondPage.class);
             startActivity(intent);
