@@ -5,9 +5,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import android.database.sqlite.SQLiteOpenHelper;
+
 import androidx.annotation.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +47,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(TITLE, reminderModel.getTitle());
         values.put(DESCRIPTION, reminderModel.getDescription());
         values.put(TIME, reminderModel.getTime());
-
         database.insert(TABLE_NAME, null, values);
         database.close();
 
@@ -55,7 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void deleteContact(MedicinReminderModel medicinReminderModel) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, TITLE + " = ?",
-                new String[] { String.valueOf(medicinReminderModel.getTitle()) });
+                new String[]{String.valueOf(medicinReminderModel.getTitle())});
         db.close();
     }
 
@@ -67,22 +67,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = database.rawQuery(SELECT_QUERY, null);
 
         if (cursor.moveToFirst()) {
-do {
+            do {
 
-    MedicinReminderModel medicinReminderModel = new MedicinReminderModel();
-    medicinReminderModel.setTitle(cursor.getString(1));
-    medicinReminderModel.setDescription(cursor.getString(2));
-    medicinReminderModel.setTime(cursor.getString(3));
-    reminderModelList.add(medicinReminderModel);
-}
-while (cursor.moveToNext());
+                MedicinReminderModel medicinReminderModel = new MedicinReminderModel();
+                medicinReminderModel.setTitle(cursor.getString(1));
+                medicinReminderModel.setDescription(cursor.getString(2));
+                medicinReminderModel.setTime(cursor.getString(3));
+                reminderModelList.add(medicinReminderModel);
+            }
+            while (cursor.moveToNext());
         }
-cursor.close();
+        cursor.close();
 
         return reminderModelList;
 
     }
-
 
 
 }

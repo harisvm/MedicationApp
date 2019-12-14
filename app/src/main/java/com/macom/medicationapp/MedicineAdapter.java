@@ -1,8 +1,6 @@
 package com.macom.medicationapp;
 
 
-
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,7 +52,7 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.Medici
         holder.title.setText(medicine.getTitle());
         holder.description.setText(medicine.getDescription());
         holder.imageView.setBackgroundResource(R.drawable.medicine);
-holder.time.setText(medicine.getTime());
+        holder.time.setText(medicine.getTime());
     }
 
     @Override
@@ -63,7 +62,7 @@ holder.time.setText(medicine.getTime());
 
 
     public class MedicineViewholder extends RecyclerView.ViewHolder {
-        TextView title, description,time;
+        TextView title, description, time;
         ImageView imageView;
         CardView cardView;
         Button button;

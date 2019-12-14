@@ -18,17 +18,12 @@ public class AlarmReciever extends BroadcastReceiver {
         startWakefulService(context, (intent.setComponent(comp)));
 
 
+        context.startService(new Intent(context, AlarmSoundService.class));
 
-            context.startService(new Intent(context, AlarmSoundService.class));
-
-        }
-
+    }
 
 
-
-
-
-        }
+}
 
 
 
