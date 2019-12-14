@@ -55,6 +55,7 @@ public class SecondPage extends AppCompatActivity {
 
 		button.setOnClickListener(v -> {
 					if (!materialDayPicker.getSelectedDays().isEmpty()) {
+
 						Intent alarmIntent = new Intent(getApplicationContext(), AlarmReciever.class);
 
 						pendingIntent = PendingIntent.getBroadcast(SecondPage.this, ALARM_REQUEST_CODE, alarmIntent, 0);
@@ -112,12 +113,10 @@ public class SecondPage extends AppCompatActivity {
 		calendar.set(Calendar.MINUTE, timePicker.getCurrentMinute() - 10);
 
 		manager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
+
+
 	}
-
-
-
-    }
-
+}
 
 //    public void stopAlarmManager() {
 //

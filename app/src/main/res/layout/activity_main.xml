@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="1"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-
+android:layout_weight=".9"
         android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
-<Button
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/add_button"
-    android:sr
-    ></Button>
 
-</FrameLayout>
+    <Button
+        android:id="@+id/addRem"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:background="@drawable/layout_bg"
+        android:text="+"></Button>
+
+
+</LinearLayout>
