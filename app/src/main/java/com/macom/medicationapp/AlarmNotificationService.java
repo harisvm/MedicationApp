@@ -4,6 +4,7 @@ import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,53 +12,55 @@ import android.graphics.Color;
 import androidx.annotation.Nullable;
 
 public class AlarmNotificationService extends IntentService {
-    public static final int NOTIFICATION_ID = 0;
+	public static final int NOTIFICATION_ID = 0;
 
 
-    public AlarmNotificationService() {
-        super("AlarmNotificationService");
-    }
+	public AlarmNotificationService() {
+		super("AlarmNotificationService");
+	}
 
 
-    @Override
-    protected void onHandleIntent(@Nullable Intent intent) {
-        sendNotification();
+	@Override
+	protected void onHandleIntent(@Nullable Intent intent) {
+		sendNotification();
 
-    }
-
-
-    private void sendNotification() {
+	}
 
 
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+	private void sendNotification() {
+		PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 1,
+				new Intent(getApplicationContext(), AnimationAlarm.class), PendingIntent.FLAG_UPDATE_CURRENT);
 
-        String channelId = "my_channel_id";
-        CharSequence channelName = "My Channel";
-        int importance = NotificationManager.IMPORTANCE_DEFAULT;
-        NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, importance);
-        notificationChannel.enableLights(true);
+		NotificationManager notificationManager =
+				(NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        notificationChannel.setLightColor(Color.RED);
-        notificationChannel.enableVibration(true);
-        notificationChannel.setVibrationPattern(new long[]{1000, 2000});
-        notificationManager.createNotificationChannel(notificationChannel);
+		String channelId = "my_channel_id";
+		CharSequence channelName = "My Channel";
+		int importance = NotificationManager.IMPORTANCE_DEFAULT;
+		NotificationChannel notificationChannel = new NotificationChannel(channelId, channelName, importance);
+		notificationChannel.enableLights(true);
 
-        int notifyId = 1;
+		notificationChannel.setLightColor(Color.RED);
+		notificationChannel.enableVibration(true);
+		notificationChannel.setVibrationPattern(new long[]{1000, 2000});
+		notificationManager.createNotificationChannel(notificationChannel);
 
-        Notification notification = new Notification.Builder(getApplicationContext())
-                .setContentTitle("its time to have medicine")
-                .setContentText("Please check your pillbox!")
-                .setAutoCancel(true)
-                .setOngoing(true)
-                .setSmallIcon(R.drawable.medicine)
-                .setChannelId(channelId)
-                .build();
+		int notifyId = 1;
 
-        notificationManager.notify(notifyId, notification);
+		Notification notification = new Notification.Builder(getApplicationContext())
+				.setContentTitle("its time to have medicine")
+				.setContentText("Please check your pillbox!")
+				.setAutoCancel(true)
+				.setOngoing(true)
+				.setSmallIcon(R.drawable.medicine)
+				.setChannelId(channelId)
+				.setFullScreenIntent(contentIntent, true)
+				.build();
+
+		notificationManager.notify(notifyId, notification);
 
 
-    }
+	}
 
 
 }
