@@ -3,7 +3,7 @@
     <item
         android:id="@+id/bottomNavigationAlarmMenuId"
         android:icon="@drawable/ic_add_box_black_24dp"
-        
+
         android:title="Add" />
 
 

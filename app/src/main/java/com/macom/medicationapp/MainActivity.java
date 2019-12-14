@@ -14,27 +14,28 @@ import com.macom.medicationapp.Models.MedicinReminderModel;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
-    RecyclerView recyclerView;
     MedicineAdapter medicineAdapter;
     List<MedicinReminderModel> modelArrayList;
     DatabaseHelper dbHelper;
+    @BindView(R.id.addRem)
     Button button;
+    @BindView(R.id.recycler)
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = findViewById(R.id.recycler);
+        ButterKnife.bind(this);
+
         modelArrayList = new ArrayList<>();
-        button = findViewById(R.id.addRem);
-
-
         button.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SecondPage.class);
             startActivity(intent);
-
-
         });
 
 
@@ -60,18 +61,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//
-//        switch (item.getItemId()) {
-//            case R.id.bottomNavigationAlarmMenuId:
-//
-//                Intent intent = new Intent(MainActivity.this, SecondPage.class);
-//                startActivity(intent);
-//
-//        }
-//        return super.onOptionsItemSelected(item);
-//git status
 
-//    }
 }
