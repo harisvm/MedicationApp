@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.macom.medicationapp">
+
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
@@ -10,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SecondPage"></activity>
+        <activity android:name=".AnimationAlarm"></activity>
+        <activity android:name=".SecondPage" />
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,9 +21,10 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".AlarmReciever"></receiver>
-        <service android:name=".AlarmNotificationService"></service>
-        <service android:name=".AlarmSoundService"></service>
+        <receiver android:name=".AlarmReciever" />
+
+        <service android:name=".AlarmNotificationService" />
+        <service android:name=".AlarmSoundService" />
     </application>
 
 </manifest>
